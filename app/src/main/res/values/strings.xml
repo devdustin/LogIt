@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LogIt</string>
+    <string name="btn_delete">Delete</string>
+    <string name="txt_log_date_heading">Date:</string>
+    <string name="txt_log_tag">Tag:</string>
+    <string name="btn_submit">Submit</string>
+    <string name="action_settings">Settings</string>
+</resources>
