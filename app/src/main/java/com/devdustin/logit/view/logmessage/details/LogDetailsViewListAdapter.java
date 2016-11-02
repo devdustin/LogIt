@@ -1,4 +1,4 @@
-package com.devdustin.logit.view.home;
+package com.devdustin.logit.view.logmessage.details;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 
 import com.devdustin.logit.pojo.LogMessage;
-import com.devdustin.logit.view.logthumb.LogThumbView;
-import com.devdustin.logit.view.logthumb.LogThumbViewImpl;
+import com.devdustin.logit.view.logmessage.thumb.LogThumbView;
+import com.devdustin.logit.view.logmessage.thumb.LogThumbViewImpl;
 
-class HomeListAdapter extends CursorAdapter {
+class LogDetailsViewListAdapter extends CursorAdapter {
 
-    HomeListAdapter(Context context, Cursor c, int flags) {
+    LogDetailsViewListAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
     }
 

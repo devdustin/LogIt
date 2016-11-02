@@ -1,4 +1,4 @@
-package com.devdustin.logit.view.logdetail;
+package com.devdustin.logit.view.logmessage.detail;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -18,17 +18,22 @@ import java.util.TimeZone;
 
 public class LogDetailViewImpl implements LogDetailView {
 
-    private final View rootView;
-    private LogDetailsViewListener listener;
-    private final TextView txtLogText;
+    static final String LOG_TEXT = "TXT_LOG_TEXT";
+    static final String LOG_CREATED = "TXT_LOG_CREATED";
+    static final String LOG_TAG = "TXT_LOG_TAG";
+    static final String DELETE_VISIBLE = "BTN_DELETE_VISIBILE";
 
+    private final View rootView;
+    private final TextView txtLogText;
     private final TextView txtLogCreated;
     private final TextView txtLogTag;
     private final Button btnLogDelete;
     private final java.text.DateFormat dateFormat;
     private final java.text.DateFormat timeFormat;
 
-    public LogDetailViewImpl(LayoutInflater inflater, final ViewGroup container) {
+    private LogDetailsViewListener listener;
+
+    public LogDetailViewImpl(final LayoutInflater inflater, final ViewGroup container) {
         rootView = inflater.inflate(R.layout.logit_view_log_details, container, false);
 
         txtLogText = (TextView) rootView.findViewById(R.id.txt_log_text);
@@ -56,7 +61,12 @@ public class LogDetailViewImpl implements LogDetailView {
 
     @Override
     public Bundle getState() {
-        return null;
+        final Bundle state = new Bundle();
+        state.putString(LOG_CREATED, txtLogCreated.getText().toString());
+        state.putString(LOG_TEXT, txtLogText.getText().toString());
+        state.putString(LOG_TAG, txtLogTag.getText().toString());
+        state.putBoolean(DELETE_VISIBLE, btnLogDelete.getVisibility() == View.VISIBLE);
+        return state;
     }
 
     @Override

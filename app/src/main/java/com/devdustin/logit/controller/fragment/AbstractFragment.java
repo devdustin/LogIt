@@ -34,7 +34,7 @@ public class AbstractFragment extends Fragment {
     protected LogItDbRepository getRepository() {
         if (repository == null) {
             // todo: inject this if possible
-            repository = new LogItDbRepositoryImpl(getActivity());
+            repository = new LogItDbRepositoryImpl(getActivity(), null, null);
         }
 
         return repository;

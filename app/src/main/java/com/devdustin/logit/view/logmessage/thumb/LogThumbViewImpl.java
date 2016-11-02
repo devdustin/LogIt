@@ -1,7 +1,6 @@
-package com.devdustin.logit.view.logthumb;
+package com.devdustin.logit.view.logmessage.thumb;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,26 +12,14 @@ import com.devdustin.logit.pojo.LogMessage;
 
 public class LogThumbViewImpl implements LogThumbView {
 
-    private final Context context;
+    public static final String LOG_THUMB_TEXT = "TXT_LOG_THUMB_TEXT";
+
     private final View rootView;
     private final TextView txtText;
 
     public LogThumbViewImpl(Context context, ViewGroup container) {
-        this.context = context;
         rootView = LayoutInflater.from(context).inflate(R.layout.logit_view_log_thumb, container, false);
         txtText = (TextView) rootView.findViewById(R.id.log_text);
-    }
-
-    @Override
-    public void showThumb(LogMessage logMessage) {
-        txtText.setText(logMessage.getText());
-
-        // could change background or do something similar here based on state of logMessage
-
-        // version specific checks
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            rootView.setBackgroundColor(context.getResources().getColor(android.R.color.holo_blue_light, null));
-        }
     }
 
     @Override
@@ -42,6 +29,15 @@ public class LogThumbViewImpl implements LogThumbView {
 
     @Override
     public Bundle getState() {
-        return null;
+        final Bundle state = new Bundle();
+        state.putString(LOG_THUMB_TEXT, txtText.getText().toString());
+        return state;
+    }
+
+    @Override
+    public void showThumb(LogMessage logMessage) {
+        txtText.setText(logMessage.getText());
+
+        // could change background or do something similar here based on state of logMessage
     }
 }

@@ -1,4 +1,4 @@
-package com.devdustin.logit.view.logthumb;
+package com.devdustin.logit.view.logmessage.thumb;
 
 import com.devdustin.logit.pojo.LogMessage;
 import com.devdustin.logit.view.LogItView;

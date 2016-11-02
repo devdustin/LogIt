@@ -31,7 +31,7 @@ public class LogItDbLoaderImpl extends CursorLoader implements LogItDbLoader {
         final String groupBy = null;
         final String having = null;
         final String limit = null;
-        return readableDatabase.query(LogMessageEntryContract.LogMessageEntry.TABLE_NAME, getProjection(), getSelection(), getSelectionArgs(), groupBy, having, getSortOrder(), limit);
+        return readableDatabase.query(LogMessageEntryContract.TABLE_NAME, getProjection(), getSelection(), getSelectionArgs(), groupBy, having, getSortOrder(), limit);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class LogItDbLoaderImpl extends CursorLoader implements LogItDbLoader {
         final SQLiteDatabase writeableDatabase = getWriteableDatabase();
 
         try {
-            writeableDatabase.delete(LogMessageEntryContract.LogMessageEntry.TABLE_NAME, whereClause, whereArgs);
+            writeableDatabase.delete(LogMessageEntryContract.TABLE_NAME, whereClause, whereArgs);
         } finally {
             writeableDatabase.close();
         }
@@ -49,7 +49,7 @@ public class LogItDbLoaderImpl extends CursorLoader implements LogItDbLoader {
     public void insertValues(ContentValues values) {
         final SQLiteDatabase writeableDatabase = getWriteableDatabase();
         try {
-            long newRowId = writeableDatabase.insert(LogMessageEntryContract.LogMessageEntry.TABLE_NAME, null, values);
+            long newRowId = writeableDatabase.insert(LogMessageEntryContract.TABLE_NAME, null, values);
             Log.i(LogMessagesFragment.class.getSimpleName(), String.format("Inserted new row at id %d", newRowId));
         } finally {
             writeableDatabase.close();

@@ -1,4 +1,4 @@
-package com.devdustin.logit.view.home;
+package com.devdustin.logit.view.logmessage.details;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,18 +10,18 @@ import android.widget.ListView;
 
 import com.devdustin.logit.R;
 
-public class HomeViewImpl implements HomeView {
+public class LogDetailsViewImpl implements LogDetailsView {
 
     private final View rootView;
     private final ListView listView;
-    private final HomeListAdapter listAdapter;
-    private HomeViewListener listener;
+    private final LogDetailsViewListAdapter listAdapter;
+    private LogDetailsViewListener listener;
 
-    public HomeViewImpl(LayoutInflater inflater, ViewGroup container) {
+    public LogDetailsViewImpl(LayoutInflater inflater, ViewGroup container) {
         rootView = inflater.inflate(R.layout.logit_view_home, container, false);
 
         listView = (ListView) rootView.findViewById(R.id.list_log_messages);
-        listAdapter = new HomeListAdapter(rootView.getContext(), null, 0);
+        listAdapter = new LogDetailsViewListAdapter(rootView.getContext(), null, 0);
         listView.setAdapter(listAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -35,16 +35,6 @@ public class HomeViewImpl implements HomeView {
     }
 
     @Override
-    public void swapCursor(Cursor cursor) {
-        listAdapter.swapCursor(cursor);
-    }
-
-    @Override
-    public void setListener(HomeViewListener listener) {
-        this.listener = listener;
-    }
-
-    @Override
     public View getRootView() {
         return rootView;
     }
@@ -52,5 +42,15 @@ public class HomeViewImpl implements HomeView {
     @Override
     public Bundle getState() {
         return null;
+    }
+
+    @Override
+    public void swapCursor(Cursor cursor) {
+        listAdapter.swapCursor(cursor);
+    }
+
+    @Override
+    public void setListener(LogDetailsViewListener listener) {
+        this.listener = listener;
     }
 }

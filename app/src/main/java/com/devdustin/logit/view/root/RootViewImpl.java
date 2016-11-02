@@ -15,6 +15,8 @@ import com.devdustin.logit.view.LogItView;
 public class RootViewImpl implements LogItView {
 
     public static final String NEW_LOG_KEY = "newLogMessage";
+    public static final String SUBMIT_VISIBLE = "submitVisible";
+
     private final View rootView;
     private final EditText txtNewLog;
     private final Button btnSubmitNew;
@@ -52,6 +54,7 @@ public class RootViewImpl implements LogItView {
     public Bundle getState() {
         final Bundle state = new Bundle(1);
         state.putString(NEW_LOG_KEY, txtNewLog.getText().toString());
+        state.putBoolean(SUBMIT_VISIBLE, btnSubmitNew.getVisibility() == View.VISIBLE);
         return state;
     }
 

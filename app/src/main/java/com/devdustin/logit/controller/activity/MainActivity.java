@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements AbstractFragment.
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            // todo: handle settings
             return true;
         }
 
@@ -96,21 +95,16 @@ public class MainActivity extends AppCompatActivity implements AbstractFragment.
             transaction.addToBackStack(null);
         }
 
-        transaction.replace(R.id.frame_contents, newFragment, theClass.getClass().getSimpleName());
+        transaction.replace(R.id.frame_contents, newFragment, theClass.getSimpleName());
         transaction.commit();
-    }
-
-    private boolean isFragmentShown(Class<? extends Fragment> theClass) {
-        final Fragment currentFragment = getFragmentManager().findFragmentById(R.id.frame_contents);
-
-        return (currentFragment == null && theClass == null)
-                || currentFragment != null && theClass.isInstance(currentFragment);
     }
 
     @Override
     public void onSubmitClick() {
-        LogItDbRepository repo = new LogItDbRepositoryImpl(this);
-        repo.submitEntry(rootView.getState());
+        LogItDbRepository repo = new LogItDbRepositoryImpl(this, null, null);
+        final Bundle state = rootView.getState();
+        final String message = state.getString(RootViewImpl.NEW_LOG_KEY);
+        repo.submitLogMessage(message);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -123,6 +117,13 @@ public class MainActivity extends AppCompatActivity implements AbstractFragment.
     public void onLogMessageSubmittedEvent(LogMessageSubmittedEvent event) {
         final boolean refresh = true;
         loadDefaultFragment(refresh);
+    }
+
+    private boolean isFragmentShown(Class<? extends Fragment> theClass) {
+        final Fragment currentFragment = getFragmentManager().findFragmentById(R.id.frame_contents);
+
+        return (currentFragment == null && theClass == null)
+                || currentFragment != null && theClass.isInstance(currentFragment);
     }
 
     private void loadDefaultFragment(boolean refresh) {

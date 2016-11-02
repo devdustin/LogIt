@@ -9,21 +9,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.devdustin.logit.view.home.HomeView;
-import com.devdustin.logit.view.home.HomeViewImpl;
+import com.devdustin.logit.view.logmessage.details.LogDetailsView;
+import com.devdustin.logit.view.logmessage.details.LogDetailsViewImpl;
 
-public class LogMessagesFragment extends AbstractFragment implements HomeView.HomeViewListener, LoaderManager.LoaderCallbacks<Cursor> {
+public class LogMessagesFragment extends AbstractFragment implements LogDetailsView.LogDetailsViewListener, LoaderManager.LoaderCallbacks<Cursor> {
 
-    private HomeView homeView;
+    private LogDetailsView logDetailsView;
     private static final int DB_LOADER = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // todo: inject this
-        homeView = new HomeViewImpl(inflater, container);
-        homeView.setListener(this);
+        logDetailsView = new LogDetailsViewImpl(inflater, container);
+        logDetailsView.setListener(this);
 
-        return homeView.getRootView();
+        return logDetailsView.getRootView();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class LogMessagesFragment extends AbstractFragment implements HomeView.Ho
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         switch (id) {
             case DB_LOADER:
-                return getRepository().getAllLogMessages();
+                return getRepository().getAllLogMessagesCursorLoader();
             default:
                 Log.e(LogMessagesFragment.class.getSimpleName(), String.format("onCreateLoader() called with unrecognized id: %d", id));
                 return null;
@@ -48,7 +48,7 @@ public class LogMessagesFragment extends AbstractFragment implements HomeView.Ho
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         switch (loader.getId()) {
             case DB_LOADER:
-                homeView.swapCursor(data);
+                logDetailsView.swapCursor(data);
                 break;
             default:
                 Log.e(LogMessagesFragment.class.getSimpleName(), String.format("onLoadFinished() called with unrecognized id: %d", loader.getId()));
@@ -61,7 +61,7 @@ public class LogMessagesFragment extends AbstractFragment implements HomeView.Ho
         switch (loader.getId()) {
             case DB_LOADER:
                 // release resources
-                homeView.swapCursor(null);
+                logDetailsView.swapCursor(null);
                 break;
             default:
                 Log.e(LogMessagesFragment.class.getSimpleName(), String.format("onLoaderReset() called with unrecognized id: %d", loader.getId()));

@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.devdustin.logit.pojo.LogMessage;
-import com.devdustin.logit.view.logdetail.LogDetailView;
-import com.devdustin.logit.view.logdetail.LogDetailViewImpl;
+import com.devdustin.logit.view.logmessage.detail.LogDetailView;
+import com.devdustin.logit.view.logmessage.detail.LogDetailViewImpl;
 
 public class LogMessageDetailsFragment extends AbstractFragment implements LogDetailView.LogDetailsViewListener, LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -48,7 +48,7 @@ public class LogMessageDetailsFragment extends AbstractFragment implements LogDe
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         switch (id) {
             case DB_LOADER:
-                return getRepository().getLogMessageById(logMessageId);
+                return getRepository().getLogMessageByIdCursorLoader(logMessageId);
             default:
                 Log.e(LogMessageDetailsFragment.class.getSimpleName(), String.format("onCreateLoader() called, didn't recognize id: %d", id));
                 return null;
