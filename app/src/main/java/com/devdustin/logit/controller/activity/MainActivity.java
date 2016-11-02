@@ -57,26 +57,6 @@ public class MainActivity extends AppCompatActivity implements AbstractFragment.
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        optionsMenuView = new OptionsMenuViewImpl(getMenuInflater(), menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            final Bundle state = optionsMenuView.getState();
-            final boolean hasVisibleItems = state.getBoolean(OptionsMenuView.MENU_HAS_VISIBLE_ITEMS);
-            Log.i("visibile menus", String.valueOf(hasVisibleItems));
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void replaceFragment(Class<? extends Fragment> theClass, boolean addToBackStack, Bundle args, boolean refresh) {
         if (!refresh && isFragmentShown(theClass)) {
             return;
@@ -112,6 +92,26 @@ public class MainActivity extends AppCompatActivity implements AbstractFragment.
         final Bundle state = rootView.getState();
         final String message = state.getString(RootView.NEW_LOG_KEY);
         repo.submitLogMessage(message);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        optionsMenuView = new OptionsMenuViewImpl(getMenuInflater(), menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            final Bundle state = optionsMenuView.getState();
+            final boolean hasVisibleItems = state.getBoolean(OptionsMenuView.MENU_HAS_VISIBLE_ITEMS);
+            Log.i("visibile menus", String.valueOf(hasVisibleItems));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean isFragmentShown(Class<? extends Fragment> theClass) {
