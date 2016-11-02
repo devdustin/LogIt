@@ -15,6 +15,7 @@ import com.devdustin.logit.database.repository.LogItDbRepository;
 import com.devdustin.logit.database.repository.LogItDbRepositoryImpl;
 import com.devdustin.logit.event.LogMessageDeletedEvent;
 import com.devdustin.logit.event.LogMessageSubmittedEvent;
+import com.devdustin.logit.view.root.RootView;
 import com.devdustin.logit.view.root.RootViewImpl;
 import com.devdustin.logit.view.root.options.OptionsMenuView;
 import com.devdustin.logit.view.root.options.OptionsMenuViewImpl;
@@ -23,10 +24,9 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public class MainActivity extends AppCompatActivity implements AbstractFragment.AbstractFragmentCallback,
-        RootViewImpl.RootViewListener {
+public class MainActivity extends AppCompatActivity implements AbstractFragment.AbstractFragmentCallback, RootView.RootViewListener {
 
-    private RootViewImpl rootView;
+    private RootView rootView;
     private OptionsMenuView optionsMenuView;
 
     @Override
@@ -110,20 +110,8 @@ public class MainActivity extends AppCompatActivity implements AbstractFragment.
     public void onSubmitClick() {
         LogItDbRepository repo = new LogItDbRepositoryImpl(this, null, null);
         final Bundle state = rootView.getState();
-        final String message = state.getString(RootViewImpl.NEW_LOG_KEY);
+        final String message = state.getString(RootView.NEW_LOG_KEY);
         repo.submitLogMessage(message);
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onLogMessageDeletedEvent(LogMessageDeletedEvent event) {
-        final boolean refresh = true;
-        loadDefaultFragment(refresh);
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onLogMessageSubmittedEvent(LogMessageSubmittedEvent event) {
-        final boolean refresh = true;
-        loadDefaultFragment(refresh);
     }
 
     private boolean isFragmentShown(Class<? extends Fragment> theClass) {
@@ -135,5 +123,17 @@ public class MainActivity extends AppCompatActivity implements AbstractFragment.
 
     private void loadDefaultFragment(boolean refresh) {
         replaceFragment(LogMessagesFragment.class, false, null, refresh);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLogMessageSubmittedEvent(LogMessageSubmittedEvent event) {
+        final boolean refresh = true;
+        loadDefaultFragment(refresh);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLogMessageDeletedEvent(LogMessageDeletedEvent event) {
+        final boolean refresh = true;
+        loadDefaultFragment(refresh);
     }
 }

@@ -12,18 +12,12 @@ import android.widget.EditText;
 import com.devdustin.logit.R;
 import com.devdustin.logit.view.LogItView;
 
-public class RootViewImpl implements LogItView {
-
-    public static final String NEW_LOG_KEY = "newLogMessage";
-    public static final String SUBMIT_VISIBLE = "submitVisible";
+public class RootViewImpl implements RootView {
 
     private final View rootView;
     private final EditText txtNewLog;
     private final Button btnSubmitNew;
 
-    public interface RootViewListener {
-        void onSubmitClick();
-    }
     private RootViewListener listener;
 
     public RootViewImpl(final Context context, ViewGroup container) {
@@ -58,6 +52,7 @@ public class RootViewImpl implements LogItView {
         return state;
     }
 
+    @Override
     public void setListener(RootViewListener listener) {
         this.listener = listener;
     }
