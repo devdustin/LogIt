@@ -16,14 +16,18 @@ import com.devdustin.logit.database.repository.LogItDbRepositoryImpl;
 import com.devdustin.logit.event.LogMessageDeletedEvent;
 import com.devdustin.logit.event.LogMessageSubmittedEvent;
 import com.devdustin.logit.view.root.RootViewImpl;
+import com.devdustin.logit.view.root.options.OptionsMenuView;
+import com.devdustin.logit.view.root.options.OptionsMenuViewImpl;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public class MainActivity extends AppCompatActivity implements AbstractFragment.AbstractFragmentCallback, RootViewImpl.RootViewListener {
+public class MainActivity extends AppCompatActivity implements AbstractFragment.AbstractFragmentCallback,
+        RootViewImpl.RootViewListener {
 
-    private RootViewImpl rootView; // todo: inject this
+    private RootViewImpl rootView;
+    private OptionsMenuView optionsMenuView;
 
     @Override
     protected void onStart() {
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements AbstractFragment.
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        optionsMenuView = new OptionsMenuViewImpl(getMenuInflater(), menu);
         return true;
     }
 
@@ -63,6 +67,9 @@ public class MainActivity extends AppCompatActivity implements AbstractFragment.
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            final Bundle state = optionsMenuView.getState();
+            final boolean hasVisibleItems = state.getBoolean(OptionsMenuView.MENU_HAS_VISIBLE_ITEMS);
+            Log.i("visibile menus", String.valueOf(hasVisibleItems));
             return true;
         }
 
