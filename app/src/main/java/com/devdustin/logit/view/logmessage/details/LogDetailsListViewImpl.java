@@ -10,18 +10,18 @@ import android.widget.ListView;
 
 import com.devdustin.logit.R;
 
-public class LogDetailsViewImpl implements LogDetailsView {
+public class LogDetailsListViewImpl implements LogDetailsListView {
 
     private final View rootView;
     private final ListView listView;
-    private final LogDetailsViewListAdapter listAdapter;
+    private final LogDetailsListViewListAdapter listAdapter;
     private LogDetailsViewListener listener;
 
-    public LogDetailsViewImpl(LayoutInflater inflater, ViewGroup container) {
-        rootView = inflater.inflate(R.layout.logit_view_home, container, false);
+    public LogDetailsListViewImpl(final LayoutInflater inflater, final ViewGroup container) {
+        rootView = inflater.inflate(R.layout.logit_view_log_details_list, container, false);
 
         listView = (ListView) rootView.findViewById(R.id.list_log_messages);
-        listAdapter = new LogDetailsViewListAdapter(rootView.getContext(), null, 0);
+        listAdapter = new LogDetailsListViewListAdapter(rootView.getContext(), null, 0);
         listView.setAdapter(listAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

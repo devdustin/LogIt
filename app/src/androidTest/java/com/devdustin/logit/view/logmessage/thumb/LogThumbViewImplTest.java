@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.devdustin.logit.pojo.LogMessage;
@@ -29,7 +30,7 @@ public class LogThumbViewImplTest {
     @Before
     public void setUp() {
         final Context context = InstrumentationRegistry.getTargetContext();
-        unit = new LogThumbViewImpl(context, null);
+        unit = new LogThumbViewImpl(LayoutInflater.from(context), null);
     }
 
     @Test
@@ -57,7 +58,7 @@ public class LogThumbViewImplTest {
     }
 
     @Test
-    public void showThumb_shouldSetText_ontTextView() {
+    public void showThumb_shouldSetText_onTextView() {
         // arrange
         final Cursor mock = Mockito.mock(Cursor.class);
         when(mock.getColumnIndexOrThrow("text")).thenReturn(0);

@@ -17,13 +17,13 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
-public class LogDetailsViewImplTest {
-    private LogDetailsViewImpl unit;
+public class LogDetailsListViewImplTest {
+    private LogDetailsListViewImpl unit;
 
     @Before
     public void setUp() {
         final Context context = InstrumentationRegistry.getTargetContext();
-        unit = new LogDetailsViewImpl(LayoutInflater.from(context), null);
+        unit = new LogDetailsListViewImpl(LayoutInflater.from(context), null);
     }
 
     @Test

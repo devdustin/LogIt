@@ -29,7 +29,7 @@ public class LogDetailViewImpl implements LogDetailView {
     private LogDetailsViewListener listener;
 
     public LogDetailViewImpl(final LayoutInflater inflater, final ViewGroup container) {
-        rootView = inflater.inflate(R.layout.logit_view_log_details, container, false);
+        rootView = inflater.inflate(R.layout.logit_view_log_detail, container, false);
 
         txtLogText = (TextView) rootView.findViewById(R.id.txt_log_text);
         txtLogCreated = (TextView) rootView.findViewById(R.id.txt_log_created);

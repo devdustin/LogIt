@@ -1,6 +1,5 @@
 package com.devdustin.logit.view.logmessage.thumb;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +14,8 @@ public class LogThumbViewImpl implements LogThumbView {
     private final View rootView;
     private final TextView txtText;
 
-    public LogThumbViewImpl(Context context, ViewGroup container) {
-        rootView = LayoutInflater.from(context).inflate(R.layout.logit_view_log_thumb, container, false);
+    public LogThumbViewImpl(final LayoutInflater inflater, final ViewGroup container) {
+        rootView = inflater.inflate(R.layout.logit_view_log_thumb, container, false);
         txtText = (TextView) rootView.findViewById(R.id.log_text);
     }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.devdustin.logit.utils.CursorUtils;
@@ -20,13 +21,13 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
-public class LogDetailsViewListAdapterTest {
-    private LogDetailsViewListAdapter unit;
+public class LogDetailsListViewListAdapterTest {
+    private LogDetailsListViewListAdapter unit;
 
     @Before
     public void setUp() {
         final Context context = InstrumentationRegistry.getTargetContext();
-        unit = new LogDetailsViewListAdapter(context, null, 0);
+        unit = new LogDetailsListViewListAdapter(context, null, 0);
     }
 
     @Test
@@ -48,7 +49,7 @@ public class LogDetailsViewListAdapterTest {
         // arrange
         final Context context = InstrumentationRegistry.getTargetContext();
         final View viewToBind = new View(context);
-        final LogThumbView thumbView = new LogThumbViewImpl(context, null);
+        final LogThumbView thumbView = new LogThumbViewImpl(LayoutInflater.from(context), null);
         viewToBind.setTag(thumbView);
         final Cursor mockCursor = CursorUtils.getMockCursor();
 
