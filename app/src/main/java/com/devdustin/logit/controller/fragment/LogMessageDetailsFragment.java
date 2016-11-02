@@ -22,6 +22,7 @@ public class LogMessageDetailsFragment extends AbstractFragment implements LogDe
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // todo: inject this
         view = new LogDetailViewImpl(inflater, container);
         view.setListener(this);
 

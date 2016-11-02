@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements AbstractFragment.
 
     @Override
     public void onSubmitClick() {
-        LogItDbRepository repo = new LogItDbRepositoryImpl(this, null, null);
+        final LogItDbRepository repo = new LogItDbRepositoryImpl(this);
         final Bundle state = rootView.getState();
         final String message = state.getString(RootView.NEW_LOG_KEY);
         repo.submitLogMessage(message);

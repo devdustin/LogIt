@@ -47,6 +47,10 @@ public class LogItDbRepositoryImpl implements LogItDbRepository {
         dbLoader = this.dbRepoFactory.getLogItDbLoader(this.activity);
     }
 
+    public LogItDbRepositoryImpl(Activity activity) {
+        this(activity, null, null);
+    }
+
     @Override
     public CursorLoader getAllLogMessagesCursorLoader() {
         final Uri contentUri = null;
