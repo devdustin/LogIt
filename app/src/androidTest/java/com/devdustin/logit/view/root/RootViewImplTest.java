@@ -11,8 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static com.devdustin.logit.view.root.RootViewImpl.NEW_LOG_KEY;
-import static com.devdustin.logit.view.root.RootViewImpl.SUBMIT_VISIBLE;
+import static com.devdustin.logit.view.root.RootView.NEW_LOG_KEY;
+import static com.devdustin.logit.view.root.RootView.SUBMIT_VISIBLE;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;

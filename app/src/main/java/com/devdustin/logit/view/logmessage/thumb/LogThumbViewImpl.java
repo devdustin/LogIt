@@ -12,8 +12,6 @@ import com.devdustin.logit.pojo.LogMessage;
 
 public class LogThumbViewImpl implements LogThumbView {
 
-    public static final String LOG_THUMB_TEXT = "TXT_LOG_THUMB_TEXT";
-
     private final View rootView;
     private final TextView txtText;
 

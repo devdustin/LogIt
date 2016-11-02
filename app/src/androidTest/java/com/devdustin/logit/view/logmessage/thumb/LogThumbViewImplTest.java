@@ -15,7 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
-import static com.devdustin.logit.view.logmessage.thumb.LogThumbViewImpl.LOG_THUMB_TEXT;
+import static com.devdustin.logit.view.logmessage.thumb.LogThumbView.LOG_THUMB_TEXT;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;

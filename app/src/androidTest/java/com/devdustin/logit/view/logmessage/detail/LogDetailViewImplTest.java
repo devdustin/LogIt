@@ -62,7 +62,7 @@ public class LogDetailViewImplTest {
         // assert
         final Bundle state = unit.getState();
         assertThat(state, is(notNullValue()));
-        assertThat(state.getBoolean(LogDetailViewImpl.DELETE_VISIBLE), is(false));
+        assertThat(state.getBoolean(LogDetailView.DELETE_VISIBLE), is(false));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class LogDetailViewImplTest {
         // assert
         final Bundle state = unit.getState();
         assertThat(state, is(notNullValue()));
-        assertThat(state.getBoolean(LogDetailViewImpl.DELETE_VISIBLE), is(true));
+        assertThat(state.getBoolean(LogDetailView.DELETE_VISIBLE), is(true));
     }
 
     @Test
@@ -88,9 +88,9 @@ public class LogDetailViewImplTest {
         // assert
         final Bundle state = unit.getState();
         assertThat(state, is(notNullValue()));
-        assertThat(state.getString(LogDetailViewImpl.LOG_TAG), is("tag"));
-        assertThat(state.getString(LogDetailViewImpl.LOG_TEXT), is("the text"));
+        assertThat(state.getString(LogDetailView.LOG_TAG), is("tag"));
+        assertThat(state.getString(LogDetailView.LOG_TEXT), is("the text"));
         final String expectedCreated = "Oct 7, 17 5:10 AM";
-        assertThat(state.getString(LogDetailViewImpl.LOG_CREATED), is(expectedCreated));
+        assertThat(state.getString(LogDetailView.LOG_CREATED), is(expectedCreated));
     }
 }

@@ -18,11 +18,6 @@ import java.util.TimeZone;
 
 public class LogDetailViewImpl implements LogDetailView {
 
-    static final String LOG_TEXT = "TXT_LOG_TEXT";
-    static final String LOG_CREATED = "TXT_LOG_CREATED";
-    static final String LOG_TAG = "TXT_LOG_TAG";
-    static final String DELETE_VISIBLE = "BTN_DELETE_VISIBILE";
-
     private final View rootView;
     private final TextView txtLogText;
     private final TextView txtLogCreated;
